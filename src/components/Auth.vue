@@ -2,16 +2,16 @@
     <div class="flex min-h-screen">
         <!-- Registration div -->
         <div
-            class="flex flex-col items-center justify-center bg-blue-300 w-2/5 p-8">
-            <div class="mt-6">
-                <h1>Vihobook Extranet'e Hoşgeldiniz!</h1>
-                <p>Hesabınız yok mu?</p>
-                <button
-                    class="mt-4 w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    type="button">
-                    Kayıt ol
-                </button>
-            </div>
+            class="flex flex-col items-center justify-center w-2/5 p-8 rounded-lg shadow-md text-white text-center"
+            :style="`background: url('https://plus.unsplash.com/premium_photo-1667239519929-61915439b46f?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center center / cover no-repeat;`">
+            <h1 class="text-3xl font-bold mb-4">
+                Vihobook Extranet'e Hoşgeldiniz!
+            </h1>
+            <p class="text-lg mb-6">Hesabınız yok mu?</p>
+            <button
+                class="hover:bg-gray-700 text-white border border-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out">
+                Kayıt ol
+            </button>
         </div>
 
         <!-- Login div -->
@@ -51,9 +51,15 @@
                             required />
                         <button
                             @click="showPassword = !showPassword"
-                            class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500"
+                            class="absolute inset-y-0 right-0 flex items-center justify-center px-3 text-gray-500"
                             type="button"
-                            style="justify-content: center">
+                            style="
+                                justify-content: center;
+                                display: flex;
+                                align-items: center;
+                                height: 100%;
+                            ">
+                            <!-- Added align-items and height -->
                             <svg
                                 v-if="showPassword"
                                 class="h-5 w-5"
@@ -88,13 +94,13 @@
                     <label class="inline-flex items-center">
                         <input
                             type="checkbox"
-                            class="form-checkbox h-5 w-5 text-blue-600" />
+                            class="form-checkbox h-4 w-4 text-gray-500" />
                         <span class="ml-2 text-sm text-gray-700"
                             >Beni hatırla</span
                         >
                     </label>
                     <button
-                        class="font-bold text-sm text-blue-600 hover:text-blue-800"
+                        class="font-bold text-sm text-gray-500 hover:text-gray-800"
                         type="button">
                         Parolanızı mı unuttunuz?
                     </button>
@@ -107,9 +113,9 @@
                     </button>
                 </div>
                 <p class="text-sm text-gray-700 leading-relaxed m-5">
-                    Bir hesaba giriş yaparak ya da hesap oluşturarak Şartlar ve
-                    Koşullarımız ile Gizlilik Bildirimimizi kabul etmiş
-                    olursunuz.
+                    Bir hesaba giriş yaparak ya da hesap oluşturarak
+                    <a> Şartlar ve Koşullarımız </a> ile
+                    <a> Gizlilik Bildirimimizi </a> kabul etmiş olursunuz.
                 </p>
             </form>
         </div>
