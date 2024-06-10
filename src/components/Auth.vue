@@ -2,7 +2,7 @@
     <div class="flex min-h-screen">
         <!-- Registration div -->
         <div
-            class="flex flex-col items-center justify-center w-2/5 p-8 rounded-lg shadow-md text-white text-center"
+            class="flex flex-col items-center justify-center w-2/5 p-8 shadow-md text-white text-center"
             :style="`background: url('https://plus.unsplash.com/premium_photo-1667239519929-61915439b46f?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center center / cover no-repeat;`">
             <h1 class="text-3xl font-bold mb-4">
                 Vihobook Extranet'e Hoşgeldiniz!
@@ -25,7 +25,7 @@
             <form class="w-3/5">
                 <div class="mb-4">
                     <input
-                        class="border-gray-500 shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                        class="border-gray-500 shadow appearance-none border rounded w-full p-4 leading-tight focus:outline-none focus:shadow-outline"
                         type="text"
                         id="text"
                         name="text"
@@ -34,7 +34,7 @@
                 </div>
                 <div class="mb-4">
                     <input
-                        class="border-gray-500 shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                        class="border-gray-500 shadow appearance-none border rounded w-full p-4 leading-tight focus:outline-none focus:shadow-outline"
                         type="email"
                         id="email"
                         name="email"
@@ -46,7 +46,7 @@
                         <input
                             v-model="password"
                             :type="showPassword ? 'text' : 'password'"
-                            class="border-gray-500 shadow appearance-none border rounded w-full py-2 px-3 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                            class="border-gray-500 shadow appearance-none border rounded w-full p-4 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                             placeholder="Parola"
                             required />
                         <button
@@ -59,7 +59,6 @@
                                 align-items: center;
                                 height: 100%;
                             ">
-                            <!-- Added align-items and height -->
                             <svg
                                 v-if="showPassword"
                                 class="h-5 w-5"
