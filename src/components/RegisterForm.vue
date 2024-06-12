@@ -130,7 +130,7 @@
                 src="https://extranet.vihobook.com/static/media/vBlueLogo.703be7df.png"
                 alt="Logo"
                 style="max-width: 200px; height: auto" />
-            <form>
+            <form @submit.prevent="handleSecondFormSubmit">
                 <div class="grid grid-cols-2">
                     <input
                         type="text"
@@ -170,7 +170,8 @@
                         type="checkbox"
                         id="terms"
                         name="terms"
-                        class="text-blue-500 focus:ring-0" />
+                        class="text-blue-500 focus:ring-0"
+                        v-model="termsChecked" />
                     <label for="terms" class="ml-2 text-sm text-gray-700">
                         Bir hesaba giriş yaparak ya da hesap oluşturarak ile
                         Şartlar ve Koşullarımız ve Gizlilik Bildirimimizi kabul
@@ -180,7 +181,9 @@
 
                 <button
                     class="w-full text-white bg-slate-600 border border-black py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    type="submit">
+                    type="submit"
+                    :class="termsChecked ? 'bg-slate-600' : 'bg-gray-400'"
+                    :disabled="!termsChecked">
                     Kayıt Ol
                 </button>
             </form>
@@ -218,6 +221,7 @@ export default {
             selectedCountry: null,
             showFirstForm: true,
             showSecondForm: false,
+            termsChecked: false,
         };
     },
     methods: {
@@ -239,6 +243,9 @@ export default {
         handleFirstFormSubmit() {
             this.showFirstForm = false;
             this.showSecondForm = true;
+        },
+        handleSecondFormSubmit() {
+            console.log("Second form submitted");
         },
     },
 };
