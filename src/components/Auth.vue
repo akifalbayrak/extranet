@@ -8,10 +8,13 @@
                 Vihobook Extranet'e Hoşgeldiniz!
             </h1>
             <p class="text-lg mb-6">Hesabınız yok mu?</p>
-            <button
+            <router-link
+                to="/register"
+                tag="button"
+                type="button"
                 class="hover:bg-gray-700 text-white border border-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out">
                 Kayıt ol
-            </button>
+            </router-link>
         </div>
 
         <!-- Login div -->
@@ -98,11 +101,13 @@
                             >Beni hatırla</span
                         >
                     </label>
-                    <button
+                    <router-link
+                        to="/forgot-password"
                         class="font-bold text-sm text-gray-500 hover:text-gray-800"
+                        tag="button"
                         type="button">
                         Parolanızı mı unuttunuz?
-                    </button>
+                    </router-link>
                 </div>
                 <div class="flex items-center justify-between">
                     <button
@@ -123,6 +128,10 @@
 
 <script>
 export default {
+    mounted() {
+        document.title = "Oturum Aç";
+    },
+
     data() {
         return {
             showPassword: false,
