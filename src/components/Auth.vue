@@ -28,7 +28,7 @@
             <form class="w-3/5">
                 <div class="mb-4">
                     <input
-                        class="border-gray-500 shadow appearance-none border rounded w-full p-4 leading-tight focus:outline-none focus:shadow-outline"
+                        class="w-full p-4 border border-gray-300 rounded-md"
                         type="text"
                         id="text"
                         name="text"
@@ -37,7 +37,7 @@
                 </div>
                 <div class="mb-4">
                     <input
-                        class="border-gray-500 shadow appearance-none border rounded w-full p-4 leading-tight focus:outline-none focus:shadow-outline"
+                        class="w-full p-4 border border-gray-300 rounded-md"
                         type="email"
                         id="email"
                         name="email"
@@ -47,11 +47,9 @@
                 <div class="mb-4">
                     <div class="relative">
                         <input
-                            v-model="password"
                             :type="showPassword ? 'text' : 'password'"
-                            class="border-gray-500 shadow appearance-none border rounded w-full p-4 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                            placeholder="Parola"
-                            required />
+                            placeholder="Şifre"
+                            class="w-full p-4 border border-gray-300 rounded-md" />
                         <button
                             @click="showPassword = !showPassword"
                             class="absolute inset-y-0 right-0 flex items-center justify-center px-3 text-gray-500"
@@ -64,12 +62,10 @@
                             ">
                             <svg
                                 v-if="showPassword"
-                                class="h-5 w-5"
+                                class="h-5 w-5 text-gray-600"
                                 fill="none"
                                 stroke="currentColor"
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="1em"
-                                height="1em"
                                 viewBox="0 0 24 24">
                                 <path
                                     fill="currentColor"
@@ -77,12 +73,10 @@
                             </svg>
                             <svg
                                 v-else
-                                class="h-5 w-5"
+                                class="h-5 w-5 text-gray-600"
                                 fill="none"
                                 stroke="currentColor"
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="1em"
-                                height="1em"
                                 viewBox="0 0 24 24">
                                 <path
                                     fill="currentColor"
