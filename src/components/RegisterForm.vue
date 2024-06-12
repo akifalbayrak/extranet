@@ -182,7 +182,11 @@
                 <button
                     class="w-full text-white bg-slate-600 border border-black py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit"
-                    :class="termsChecked ? 'bg-slate-600' : 'bg-gray-400'"
+                    :class="
+                        termsChecked
+                            ? 'bg-slate-600'
+                            : 'bg-gray-400 cursor-not-allowed'
+                    "
                     :disabled="!termsChecked">
                     Kayıt Ol
                 </button>
