@@ -129,7 +129,7 @@
 <script>
 export default {
     mounted() {
-        document.title = "Oturum Aç";
+        document.title = "Oturum";
     },
 
     data() {

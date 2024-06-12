@@ -118,6 +118,61 @@
                     </button>
                 </div>
             </form>
+            <form class="w-3/5">
+                <div class="grid grid-cols-2">
+                    <input
+                        type="text"
+                        placeholder="Adı"
+                        class="w-full p-4 my-2 border border-gray-300 rounded-md" />
+                    <input
+                        type="text"
+                        placeholder="Soyadı"
+                        class="w-full p-4 my-2 border border-gray-300 rounded-md" />
+                    <input
+                        type="tel"
+                        placeholder="Phone Number"
+                        class="w-full p-4 my-2 border border-gray-300 rounded-md" />
+
+                    <select
+                        v-model="selectedCountry"
+                        class="w-full p-4 my-2 border border-gray-300 rounded-md">
+                        <option
+                            v-for="country in countries"
+                            :key="country.id"
+                            :value="country.name_en">
+                            {{ country.name_en }}
+                            seç
+                        </option>
+                    </select>
+                    <input
+                        type="email"
+                        placeholder="Email Adresi"
+                        class="w-full p-4 my-2 border border-gray-300 rounded-md" />
+                    <input
+                        type="password"
+                        placeholder="Şifre"
+                        class="w-full p-4 my-2 border border-gray-300 rounded-md" />
+                </div>
+                <div
+                    class="flex items-center justify-between p-4 bg-gray-100 rounded-md">
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        name="terms"
+                        class="text-blue-500 focus:ring-0" />
+                    <label for="terms" class="ml-2 text-sm text-gray-700">
+                        Bir hesaba giriş yaparak ya da hesap oluşturarak ile
+                        Şartlar ve Koşullarımız ve Gizlilik Bildirimimizi kabul
+                        etmiş olursunuz
+                    </label>
+                </div>
+
+                <button
+                    class="w-full text-white bg-slate-600 border border-black py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit">
+                    Kayıt Ol
+                </button>
+            </form>
         </div>
         <!-- Login div -->
         <div
@@ -140,10 +195,33 @@
 
 <script>
 export default {
+    mounted() {
+        document.title = "Kayıt Ol";
+        this.fetchCountries();
+    },
     data() {
         return {
             picked: null,
+            countries: [],
+            selectedCountry: null,
         };
+    },
+    methods: {
+        async fetchCountries() {
+            try {
+                const response = await fetch(
+                    "https://extranet-api.vihobook.com/countries"
+                );
+                const data = await response.json();
+                if (data.result) {
+                    this.countries = data.countries;
+                } else {
+                    console.error("Failed to fetch countries");
+                }
+            } catch (error) {
+                console.error("Error fetching countries:", error);
+            }
+        },
     },
 };
 </script>
