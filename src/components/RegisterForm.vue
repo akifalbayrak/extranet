@@ -2,13 +2,14 @@
     <div class="flex min-h-screen">
         <!-- Register div -->
         <div
+            v-if="showFirstForm"
             class="flex flex-col items-center justify-center bg-gray-50 w-3/5 p-8">
             <img
                 class="mb-6"
                 src="https://extranet.vihobook.com/static/media/vBlueLogo.703be7df.png"
                 alt="Logo"
                 style="max-width: 200px; height: auto" />
-            <form class="w-3/5">
+            <form class="w-3/5" @submit.prevent="handleFirstFormSubmit">
                 <div class="mb-4">
                     <p class="text-gray-600 my-2 text-sm text">
                         Firma Tesis Adı
@@ -112,13 +113,24 @@
 
                 <div class="flex items-center justify-between">
                     <button
-                        class="w-full text-white bg-slate-600 border border-black py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="submit">
+                        type="submit"
+                        class="w-full text-white bg-slate-600 border border-black py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Sonraki
                     </button>
                 </div>
             </form>
-            <form class="w-3/5">
+        </div>
+
+        <!-- Second Form -->
+        <div
+            v-if="showSecondForm"
+            class="flex flex-col items-center justify-center bg-gray-50 w-3/5 p-8">
+            <img
+                class="mb-6"
+                src="https://extranet.vihobook.com/static/media/vBlueLogo.703be7df.png"
+                alt="Logo"
+                style="max-width: 200px; height: auto" />
+            <form>
                 <div class="grid grid-cols-2">
                     <input
                         type="text"
@@ -141,7 +153,6 @@
                             :key="country.id"
                             :value="country.name_en">
                             {{ country.name_en }}
-                            seç
                         </option>
                     </select>
                     <input
@@ -174,6 +185,7 @@
                 </button>
             </form>
         </div>
+
         <!-- Login div -->
         <div
             class="flex flex-col items-center justify-center w-2/5 p-8 shadow-md text-white text-center"
@@ -204,6 +216,8 @@ export default {
             picked: null,
             countries: [],
             selectedCountry: null,
+            showFirstForm: true,
+            showSecondForm: false,
         };
     },
     methods: {
@@ -222,9 +236,14 @@ export default {
                 console.error("Error fetching countries:", error);
             }
         },
+        handleFirstFormSubmit() {
+            this.showFirstForm = false;
+            this.showSecondForm = true;
+        },
     },
 };
 </script>
+
 <style scoped>
 .radio-black {
     color: black;
