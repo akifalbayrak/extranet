@@ -1,7 +1,5 @@
-<script setup>
-import Auth from "./components/Auth.vue";
-</script>
+<script setup></script>
 
 <template>
-    <Auth />
+    <router-view></router-view>
 </template>
