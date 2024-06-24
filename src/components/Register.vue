@@ -1,18 +1,36 @@
 <template>
-    <div class="bg-slate-700 p-4 text-white flex justify-evenly">
+    <div class="px-80 flex justify-between items-center bg-slate-700">
+        <img
+            src="https://extranet.vihobook.com/static/media/vihobook-4.d03fa29f.png"
+            alt="Logo"
+            style="max-width: 150px; height: auto" />
+        <div class="flex items-center space-x-8">
+            <p class="text-white">Zaten bir ortak mısınız?</p>
+            <router-link
+                to="/login"
+                tag="button"
+                type="button"
+                class="hover:bg-gray-700 text-white border border-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out">
+                Oturum aç
+            </router-link>
+        </div>
+    </div>
+
+    <div
+        class="bg-slate-700 py-16 px-80 text-white flex justify-between items-center">
         <div class="my-auto">
             <p class="font-bold text-lg mb-2">
                 Her şeyi Vihobook.com'da yayınlayın
             </p>
             <p>
                 Dünyanın dört bir yanındaki gezginlere, seyahat eden kişilere ve
-                turistlere ulaşmak için kayıt olun
+                <br />turistlere ulaşmak için kayıt olun
             </p>
         </div>
         <RegisterCard />
     </div>
     <div
-        class="flex flex-col items-center justify-center bg-gray-100 px-4 pt-10">
+        class="flex flex-col items-center justify-center bg-gray-100 px-80 pt-10">
         <h1 class="mb-6 text-3xl font-bold text-gray-700">
             Vihobook Dijital Marketing ile işbirliğiniz sayesinde daha kazançlı
             çıkın

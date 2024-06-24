@@ -1,18 +1,19 @@
 <template>
-    <div class="bg-white rounded-md p-6 shadow-lg">
-        <h2 class="text-2xl font-bold text-gray-700 mb-4">
+    <div class="bg-white rounded-md p-6 text-sm shadow-lg">
+        <h2 class="text-2xl font-bold text-gray-700 my-4">
             Şimdi ücretsiz üye olun ve daha fazla kazanın!
         </h2>
-
-        <p class="text-gray-600 mb-2">
+        <p class="text-gray-600 my-4 font-semibold flex">
             Affiliate marketing ile daha fazla etkileşim elde edin!
         </p>
-        <p class="text-gray-600 mb-2">
+        <p class="text-gray-600 my-4 font-semibold">
             Tüm Turizm Sektörüne hitap eden Turizm Dijital Pazarlama
         </p>
 
-        <p class="text-gray-600 mb-2">Vihobook'tan ödemeleri alma kolaylığı</p>
-        <p class="text-gray-600 mb-4">
+        <p class="text-gray-600 my-4 font-semibold">
+            Vihobook'tan ödemeleri alma kolaylığı
+        </p>
+        <p class="text-gray-600 my-4 font-semibold">
             Kayıt işlemi ücretsizdir ve 15 dakikanızı alır
         </p>
         <hr class="my-4" />

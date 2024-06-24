@@ -6,6 +6,10 @@ import RegisterForm from "../components/RegisterForm.vue";
 
 const routes = [
     {
+        path: "/",
+        redirect: "/login",
+    },
+    {
         path: "/login",
         name: "auth",
         component: Auth,
