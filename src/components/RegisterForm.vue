@@ -36,7 +36,7 @@
                             id="konaklama"
                             value="konaklama"
                             v-model="picked"
-                            class="mr-3"
+                            class="mr-3 accent-slate-600"
                             checked />
                         <div class="my-auto">
                             <h3 class="text-base font-semibold">
@@ -57,7 +57,7 @@
                             id="ozel"
                             value="ozel"
                             v-model="picked"
-                            class="mr-3" />
+                            class="mr-3 accent-slate-600" />
                         <div class="my-auto">
                             <h3 class="text-base font-semibold">
                                 Özel ve Uzun Süreli Konaklama Tesisleri
@@ -77,7 +77,7 @@
                             id="ulasim"
                             value="ulasim"
                             v-model="picked"
-                            class="mr-3" />
+                            class="mr-3 accent-slate-600" />
                         <div class="my-auto">
                             <h3 class="text-base font-semibold">
                                 Ulaşım Transfer Firmaları
@@ -96,7 +96,7 @@
                             id="etkinlik"
                             value="etkinlik"
                             v-model="picked"
-                            class="mr-3 form-radio radio-black" />
+                            class="mr-3 accent-slate-600" />
                         <div class="my-auto">
                             <h3 class="text-base font-semibold">
                                 Etkinlik Firmaları
@@ -140,21 +140,30 @@
                         type="text"
                         placeholder="Soyadı"
                         class="w-full p-4 my-2 border border-gray-300 rounded-md" />
-                    <input
-                        type="tel"
-                        placeholder="Phone Number"
-                        class="w-full p-4 my-2 border border-gray-300 rounded-md" />
 
-                    <select
+                    <vue-tel-input
+                        class="w-full my-2 border border-gray-300 rounded-md"
+                        v-model="phoneNumber"
+                        mode="international"
+                        default-country="tr"
+                        :input-options="{
+                            showDialCode: true,
+                        }"></vue-tel-input>
+
+                    <input
+                        list="countries"
                         v-model="selectedCountry"
-                        class="w-full p-4 my-2 border border-gray-300 rounded-md">
+                        @blur="validateCountry"
+                        class="w-full p-4 my-2 border border-gray-300 rounded-md"
+                        placeholder="Ülke seçiniz" />
+
+                    <datalist id="countries">
                         <option
                             v-for="country in countries"
                             :key="country.id"
-                            :value="country.name_en">
-                            {{ country.name_en }}
-                        </option>
-                    </select>
+                            :value="country.name_en"></option>
+                    </datalist>
+
                     <input
                         type="email"
                         placeholder="Email Adresi"
@@ -213,7 +222,13 @@
 </template>
 
 <script>
+import { VueTelInput } from "vue-tel-input";
+import "vue-tel-input/vue-tel-input.css";
+
 export default {
+    components: {
+        VueTelInput,
+    },
     mounted() {
         document.title = "Kayıt Ol";
         this.fetchCountries();
@@ -223,12 +238,17 @@ export default {
             picked: null,
             countries: [],
             selectedCountry: null,
-            showFirstForm: true,
-            showSecondForm: false,
+            showFirstForm: false,
+            showSecondForm: true,
             termsChecked: false,
+            phoneNumber: "",
         };
     },
     methods: {
+        handlePhoneNumberInput() {
+            // Optional: Handle the phone number input as needed
+            console.log("Phone number input:", this.phoneNumber);
+        },
         async fetchCountries() {
             try {
                 const response = await fetch(
@@ -250,14 +270,16 @@ export default {
         },
         handleSecondFormSubmit() {
             console.log("Second form submitted");
+            console.log("Phone", this.phoneNumber);
+        },
+        validateCountry() {
+            const isValid = this.countries.some(
+                (country) => country.name_en === this.selectedCountry
+            );
+            if (!isValid) {
+                this.selectedCountry = "";
+            }
         },
     },
 };
 </script>
-
-<style scoped>
-.radio-black {
-    color: black;
-    background-color: black;
-}
-</style>
