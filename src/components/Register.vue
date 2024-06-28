@@ -7,14 +7,14 @@
             class="cursor-pointer"
             onclick="window.location.href='/'" />
         <div class="flex items-center space-x-8">
-            <p></p>
-            <p class="text-white">Zaten bir ortak mısınız?</p>
+            <LanguageSelector @click="logAkif" />
+            <p class="text-white">{{ $t("alreadyPartner") }}</p>
             <router-link
                 to="/login"
                 tag="button"
                 type="button"
                 class="hover:bg-gray-500 text-white border border-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out">
-                Oturum aç
+                {{ $t("login") }}
             </router-link>
         </div>
     </div>
@@ -34,10 +34,11 @@
                 </p>
             </div>
 
-            <p class="font-bold text-5xl my-2">Vihobook.com'da yayınlayın</p>
+            <p class="font-bold text-5xl my-2">
+                {{ $t("publishVihoTitle") }}
+            </p>
             <p>
-                Dünyanın dört bir yanındaki gezginlere, seyahat eden kişilere ve
-                <br />turistlere ulaşmak için kayıt olun
+                {{ $t("publishVihoText") }}
             </p>
         </div>
         <RegisterCard />
@@ -46,77 +47,74 @@
     <div
         class="flex flex-col items-center justify-center bg-gray-100 px-80 py-10">
         <h1 class="mb-6 text-3xl font-bold text-gray-700">
-            Vihobook Dijital Marketing ile işbirliğiniz sayesinde daha kazançlı
-            çıkın
+            {{ $t("profitTitle") }}
         </h1>
         <div
             class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-4">
             <div class="bg-white rounded-md p-6 shadow-lg text-center">
                 <h2 class="text-xl font-bold text-gray-700 mb-2">
-                    Hızlı Kayıt
+                    {{ $t("fastRegistration") }}
                 </h2>
                 <img
                     class="w-16 h-auto mx-auto mb-2 rounded-md"
                     src="/images/registration.png"
                     alt="Registration" />
-                <p class="text-gray-600">Tesis sayfanızı 15 dakikada kurun</p>
+                <p class="text-gray-600">{{ $t("fastRegistrationDesc") }}</p>
             </div>
             <div class="bg-white rounded-md p-6 shadow-lg text-center">
                 <h2 class="text-xl font-bold text-gray-700 mb-2">
-                    Müşteri Hizmetleri Desteği
+                    {{ $t("customerSupport") }}
                 </h2>
                 <img
                     class="w-16 h-auto mx-auto mb-2 rounded-md"
                     src="/images/customer-service.png"
                     alt="CustomerService" />
-                <p class="text-gray-600">7/24 müşteri desteği sunuyoruz</p>
+                <p class="text-gray-600">{{ $t("customerSupportDesc") }}</p>
             </div>
             <div class="bg-white rounded-md p-6 shadow-lg text-center">
                 <h2 class="text-xl font-bold text-gray-700 mb-2">
-                    Satış Ortaklığı (Affiliate Marketing)
+                    {{ $t("affiliateMarketing") }}
                 </h2>
                 <img
                     class="w-16 h-auto mx-auto mb-2 rounded-md"
                     src="/images/shopping-online.png"
                     alt="ShoppingOnline" />
-                <p class="text-gray-600">Daha fazla misafire ulaşma şansı</p>
+                <p class="text-gray-600">{{ $t("affiliateMarketingDesc") }}</p>
             </div>
             <div class="bg-white rounded-md p-6 shadow-lg text-center">
                 <h2 class="text-xl font-bold text-gray-700 mb-2">
-                    Güvenli Ödeme
+                    {{ $t("securePayment") }}
                 </h2>
                 <img
                     class="w-16 h-auto mx-auto mb-2 rounded-md"
                     src="/images/financial-profit.png"
                     alt="FinancialProfit" />
                 <p class="text-gray-600">
-                    Vihobook.com ile garantili ödemeler alın ve dolandırıcılığa
-                    karşı korunun
+                    {{ $t("securePaymentDesc") }}
                 </p>
             </div>
             <div class="bg-white rounded-md p-6 shadow-lg text-center">
                 <h2 class="text-xl font-bold text-gray-700 mb-2">
-                    Şeffaf Komisyon
+                    {{ $t("transparentCommission") }}
                 </h2>
                 <img
                     class="w-16 h-auto mx-auto mb-2 rounded-md"
                     src="/images/komisyon.png"
                     alt="Komisyon" />
                 <p class="text-gray-600">
-                    Saydam komisyon ile neye ne kadar ödeme yaptığınız bilin
+                    {{ $t("transparentCommissionDesc") }}
                 </p>
             </div>
             <div class="bg-white rounded-md p-6 shadow-lg text-center">
                 <h2 class="text-xl font-bold text-gray-700 mb-2">
-                    İşbirliği Modeli
+                    {{ $t("partnershipModel") }}
                 </h2>
                 <img
                     class="w-16 h-auto mx-auto mb-2 rounded-md"
                     src="/images/partner.png"
                     alt="Partner" />
                 <p class="text-gray-600">
-                    Vihobook.com ile işbirliğiniz sayesinde işletmeniz için
-                    yüksek doluluk oranı sağlamanıza yardımcı oluyoruz
+                    {{ $t("partnershipModelDesc") }}
                 </p>
             </div>
         </div>
@@ -160,15 +158,31 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import RegisterCard from "./RegisterCard.vue";
+import LanguageSelector from "./LanguageSelector.vue";
+import { useI18n } from "vue-i18n";
 
-const texts = ref([
-    "Otelinizi",
-    "Villanızı",
-    "Tatil Evinizi",
-    "Dairenizi",
-    "Bungalovunuzu",
-    "Her şeyi",
+const { t } = useI18n();
+
+let texts = ref([
+    t("sliderText1"),
+    t("sliderText2"),
+    t("sliderText3"),
+    t("sliderText4"),
+    t("sliderText5"),
+    t("sliderText6"),
 ]);
+
+const logAkif = () => {
+    texts = ref([
+        t("sliderText1"),
+        t("sliderText2"),
+        t("sliderText3"),
+        t("sliderText4"),
+        t("sliderText5"),
+        t("sliderText6"),
+    ]);
+};
+
 const currentTextIndex = ref(0);
 const showText = ref(true);
 const animationClass = ref("enter-right");
@@ -178,21 +192,18 @@ let intervalId = null;
 onMounted(() => {
     document.title = "Kayıt";
     intervalId = setInterval(() => {
-        // Check if the current text is "Her şeyi"
         if (texts.value[currentTextIndex.value] === "Her şeyi") {
             clearInterval(intervalId);
             return;
         }
 
-        // Start exit animation
         animationClass.value = "exit-left";
         setTimeout(() => {
-            // Change text after exit animation completes
             currentTextIndex.value =
                 (currentTextIndex.value + 1) % texts.value.length;
             animationClass.value = "enter-right";
-        }, 1000); // Duration of the exit animation
-    }, 3000); // Duration before changing text
+        }, 1000);
+    }, 3000);
 });
 </script>
 

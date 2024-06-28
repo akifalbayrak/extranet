@@ -1,8 +1,7 @@
 <template>
     <div class="bg-white rounded-md py-4 px-6 text-sm shadow-lg">
         <h2 class="text-2xl font-bold text-gray-700 mt-2 mb-4">
-            Şimdi ücretsiz üye olun ve <br />
-            daha fazla kazanın!
+            {{ $t("freeMembershipTitle") }}
         </h2>
         <p class="text-gray-600 my-4 font-semibold flex">
             <svg
@@ -21,7 +20,7 @@
                     d="m4 24l5-5l10 10L39 9l5 5l-25 25z"
                     clip-rule="evenodd" />
             </svg>
-            Affiliate marketing ile daha fazla etkileşim elde edin!
+            {{ $t("affiliateMarketingInfo") }}
         </p>
         <p class="text-gray-600 my-4 font-semibold flex">
             <svg
@@ -40,7 +39,7 @@
                     d="m4 24l5-5l10 10L39 9l5 5l-25 25z"
                     clip-rule="evenodd" />
             </svg>
-            Tüm Turizm Sektörüne hitap eden Turizm Dijital Pazarlama
+            {{ $t("tourismDigitalMarketing") }}
         </p>
 
         <p class="text-gray-600 my-4 font-semibold flex">
@@ -60,7 +59,7 @@
                     d="m4 24l5-5l10 10L39 9l5 5l-25 25z"
                     clip-rule="evenodd" />
             </svg>
-            Vihobook'tan ödemeleri alma kolaylığı
+            {{ $t("receivePaymentsFromVihobook") }}
         </p>
         <p class="text-gray-600 my-4 font-semibold flex">
             <svg
@@ -79,7 +78,7 @@
                     d="m4 24l5-5l10 10L39 9l5 5l-25 25z"
                     clip-rule="evenodd" />
             </svg>
-            Kayıt işlemi ücretsizdir ve 15 dakikanızı alır
+            {{ $t("registrationIsFree") }}
         </p>
         <hr class="my-4" />
         <router-link
@@ -87,19 +86,19 @@
             tag="button"
             type="button"
             class="inline-block w-full text-center p-3 bg-indigo-500 hover:bg-indigo-600 text-white font-bold rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out">
-            Hemen Başla
+            {{ $t("startNow") }}
         </router-link>
 
         <hr class="my-4" />
         <div class="text-center">
             <p class="text-gray-600 font-semibold">
-                Zaten hesabınız var mı?
+                {{ $t("alreadyHaveAccount") }}
                 <router-link
                     to="/login"
                     tag="button"
                     type="button"
                     class="text-indigo-500 hover:text-indigo-600">
-                    Oturum aç
+                    {{ $t("signIn") }}
                 </router-link>
             </p>
         </div>
