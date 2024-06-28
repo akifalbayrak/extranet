@@ -7,6 +7,7 @@
             class="cursor-pointer"
             onclick="window.location.href='/'" />
         <div class="flex items-center space-x-8">
+            <p></p>
             <p class="text-white">Zaten bir ortak mısınız?</p>
             <router-link
                 to="/login"
@@ -21,10 +22,19 @@
     <div
         class="bg-slate-700 py-16 px-80 text-white flex justify-between items-center">
         <div class="my-auto">
-            <p class="font-bold text-5xl mb-2">
-                Her şeyi <br />
-                Vihobook.com'da yayınlayın
-            </p>
+            <div id="text-container" class="relative overflow-hidden h-20">
+                <p
+                    v-if="showText"
+                    :key="currentTextIndex"
+                    :class="[
+                        'font-bold text-5xl my-2 text-teal-500',
+                        animationClass,
+                    ]">
+                    {{ texts[currentTextIndex] }}
+                </p>
+            </div>
+
+            <p class="font-bold text-5xl my-2">Vihobook.com'da yayınlayın</p>
             <p>
                 Dünyanın dört bir yanındaki gezginlere, seyahat eden kişilere ve
                 <br />turistlere ulaşmak için kayıt olun
@@ -32,6 +42,7 @@
         </div>
         <RegisterCard />
     </div>
+
     <div
         class="flex flex-col items-center justify-center bg-gray-100 px-80 py-10">
         <h1 class="mb-6 text-3xl font-bold text-gray-700">
@@ -110,6 +121,7 @@
             </div>
         </div>
     </div>
+
     <div class="flex bg-white px-80 justify-evenly">
         <span>Copyright ©️ 2024.</span>
         <img
@@ -146,10 +158,65 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
 import RegisterCard from "./RegisterCard.vue";
-import { onMounted } from "vue";
+
+const texts = ref([
+    "Otelinizi",
+    "Villanızı",
+    "Tatil Evinizi",
+    "Dairenizi",
+    "Bungalovunuzu",
+    "Her şeyi",
+]);
+const currentTextIndex = ref(0);
+const showText = ref(true);
+const animationClass = ref("enter-right");
+
+let intervalId = null;
 
 onMounted(() => {
     document.title = "Kayıt";
+    intervalId = setInterval(() => {
+        // Start exit animation
+        animationClass.value = "exit-left";
+        setTimeout(() => {
+            // Change text after exit animation completes
+            currentTextIndex.value =
+                (currentTextIndex.value + 1) % texts.value.length;
+            animationClass.value = "enter-right";
+        }, 1000); // Duration of the exit animation
+    }, 3000); // Duration before changing text
 });
 </script>
+<style scoped>
+@keyframes enterRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes exitLeft {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+.enter-right {
+    animation: enterRight 1s forwards;
+}
+
+.exit-left {
+    animation: exitLeft 1s forwards;
+}
+</style>
