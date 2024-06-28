@@ -192,7 +192,7 @@ let intervalId = null;
 onMounted(() => {
     document.title = "Kayıt";
     intervalId = setInterval(() => {
-        if (texts.value[currentTextIndex.value] === "Her şeyi") {
+        if (texts.value[currentTextIndex.value] === t("sliderText6")) {
             clearInterval(intervalId);
             return;
         }
