@@ -3,7 +3,7 @@
         <!-- Registration div -->
         <div
             class="flex flex-col items-center justify-center w-2/5 p-8 shadow-md text-white text-center"
-            :style="`background: url('https://plus.unsplash.com/premium_photo-1667239519929-61915439b46f?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center center / cover no-repeat;`">
+            :style="`background: url('https://images.unsplash.com/photo-1603398938378-e54eab446dde?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center center / cover no-repeat;`">
             <h1 class="text-3xl font-bold mb-4">
                 Vihobook Extranet'e Hoşgeldiniz!
             </h1>
@@ -112,16 +112,40 @@
                 </div>
                 <p class="text-sm text-gray-700 leading-relaxed m-5">
                     Bir hesaba giriş yaparak ya da hesap oluşturarak
-                    <a> Şartlar ve Koşullarımız </a> ile
-                    <a> Gizlilik Bildirimimizi </a> kabul etmiş olursunuz.
+                    <button @click="openModal('terms')" type="button">
+                        Şartlar ve Koşullarımız
+                    </button>
+                    ile
+                    <button @click="openModal('privacy')" type="button">
+                        Gizlilik Bildirimimizi
+                    </button>
+                    kabul etmiş olursunuz.
                 </p>
+
+                <div v-if="isModalVisible">
+                    <!-- Modal container -->
+                    <div
+                        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+                        @click.self="closeModal">
+                        <!-- Conditional rendering of Privacy or Conditions component based on type -->
+                        <Privacy v-if="modalType === 'privacy'" ref="privacy" />
+                        <Conditions v-else ref="conditions" />
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 </template>
 
 <script>
+import Privacy from "./Privacy.vue";
+import Conditions from "./Conditions.vue";
+
 export default {
+    components: {
+        Privacy,
+        Conditions,
+    },
     mounted() {
         document.title = "Oturum";
     },
@@ -130,7 +154,19 @@ export default {
         return {
             showPassword: false,
             password: "",
+            isModalVisible: false,
+            modalType: "", // Track which modal type to open
         };
+    },
+    methods: {
+        openModal(type) {
+            this.isModalVisible = true;
+            this.modalType = type; // Set modal type based on button click
+        },
+        closeModal() {
+            this.isModalVisible = false;
+            this.modalType = ""; // Reset modal type when closing
+        },
     },
 };
 </script>

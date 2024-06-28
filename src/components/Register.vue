@@ -3,7 +3,9 @@
         <img
             src="https://extranet.vihobook.com/static/media/vihobook-4.d03fa29f.png"
             alt="Logo"
-            style="max-width: 150px; height: auto" />
+            style="max-width: 150px; height: auto"
+            class="cursor-pointer"
+            onclick="window.location.href='/'" />
         <div class="flex items-center space-x-8">
             <p class="text-white">Zaten bir ortak mısınız?</p>
             <router-link
@@ -19,8 +21,9 @@
     <div
         class="bg-slate-700 py-16 px-80 text-white flex justify-between items-center">
         <div class="my-auto">
-            <p class="font-bold text-lg mb-2">
-                Her şeyi Vihobook.com'da yayınlayın
+            <p class="font-bold text-5xl mb-2">
+                Her şeyi <br />
+                Vihobook.com'da yayınlayın
             </p>
             <p>
                 Dünyanın dört bir yanındaki gezginlere, seyahat eden kişilere ve
@@ -107,16 +110,13 @@
             </div>
         </div>
     </div>
-    <div class="flex bg-white px-80 justify-between">
-        <div class="flex">
-            <span>Copyright ©️ 2024.</span>
-            <img
-                src="https://extranet.vihobook.com/static/media/vBlueLogo.703be7df.png"
-                class="w-auto h-6 mx-3"
-                alt="logo" />
-            <span>All rights reserved.</span>
-        </div>
-
+    <div class="flex bg-white px-80 justify-evenly">
+        <span>Copyright ©️ 2024.</span>
+        <img
+            src="https://extranet.vihobook.com/static/media/vBlueLogo.703be7df.png"
+            class="w-auto h-6 mx-3"
+            alt="logo" />
+        <span>All rights reserved.</span>
         <div class="flex">
             <svg
                 class="w-5 h-5 mr-2 my-auto"

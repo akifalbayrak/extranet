@@ -205,7 +205,7 @@
         <!-- Login div -->
         <div
             class="flex flex-col items-center justify-center w-2/5 p-8 shadow-md text-white text-center"
-            :style="`background: url('https://plus.unsplash.com/premium_photo-1667239519929-61915439b46f?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center center / cover no-repeat;`">
+            :style="`background: url('https://images.unsplash.com/photo-1603398938378-e54eab446dde?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center center / cover no-repeat;`">
             <h1 class="text-3xl font-bold mb-4">
                 Vihobook Extranet'e Hoşgeldiniz!
             </h1>

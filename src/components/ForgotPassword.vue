@@ -1,4 +1,22 @@
 <template>
+    <div class="px-80 flex justify-between items-center bg-slate-700 py-2">
+        <img
+            src="https://extranet.vihobook.com/static/media/vihobook-4.d03fa29f.png"
+            alt="Logo"
+            style="max-width: 150px; height: auto"
+            class="cursor-pointer"
+            onclick="window.location.href='/'" />
+        <div class="flex items-center space-x-8">
+            <p class="text-white">Zaten bir ortak mısınız?</p>
+            <router-link
+                to="/login"
+                tag="button"
+                type="button"
+                class="hover:bg-gray-500 text-white border border-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out">
+                Oturum aç
+            </router-link>
+        </div>
+    </div>
     <div
         class="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4 py-2">
         <h1 class="mb-6 text-3xl font-bold text-gray-700">
