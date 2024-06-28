@@ -178,6 +178,12 @@ let intervalId = null;
 onMounted(() => {
     document.title = "Kayıt";
     intervalId = setInterval(() => {
+        // Check if the current text is "Her şeyi"
+        if (texts.value[currentTextIndex.value] === "Her şeyi") {
+            clearInterval(intervalId);
+            return;
+        }
+
         // Start exit animation
         animationClass.value = "exit-left";
         setTimeout(() => {
@@ -189,6 +195,7 @@ onMounted(() => {
     }, 3000); // Duration before changing text
 });
 </script>
+
 <style scoped>
 @keyframes enterRight {
     0% {
