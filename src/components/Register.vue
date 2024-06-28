@@ -1,5 +1,5 @@
 <template>
-    <div class="px-80 flex justify-between items-center bg-slate-700">
+    <div class="px-80 flex justify-between items-center bg-slate-700 py-4">
         <img
             src="https://extranet.vihobook.com/static/media/vihobook-4.d03fa29f.png"
             alt="Logo"

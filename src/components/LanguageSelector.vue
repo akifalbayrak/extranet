@@ -3,10 +3,10 @@
         <div class="flex items-center space-x-2">
             <img
                 :src="flagUrl"
-                class="w-16 h-auto border rounded-full shadow" />
+                class="w-10 my-auto h-auto border rounded-full shadow" />
             <button
                 @click="isDropdownOpen = !isDropdownOpen"
-                class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                class="px-4 py-2 text-white rounded">
                 {{ currentLanguageLabel }}
             </button>
         </div>
