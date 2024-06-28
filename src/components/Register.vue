@@ -50,7 +50,7 @@
             {{ $t("profitTitle") }}
         </h1>
         <div
-            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+            class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-2 gap-4">
             <div class="bg-white rounded-md p-6 shadow-lg text-center">
                 <h2 class="text-xl font-bold text-gray-700 mb-2">
                     {{ $t("fastRegistration") }}
