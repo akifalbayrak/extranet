@@ -180,7 +180,8 @@
                         id="terms"
                         name="terms"
                         class="text-blue-500 focus:ring-0"
-                        v-model="termsChecked" />
+                        v-model="termsChecked"
+                        required />
                     <label for="terms" class="ml-2 text-sm text-gray-700">
                         Bir hesaba giriş yaparak ya da hesap oluşturarak ile
                         Şartlar ve Koşullarımız ve Gizlilik Bildirimimizi kabul
@@ -238,8 +239,8 @@ export default {
             picked: null,
             countries: [],
             selectedCountry: null,
-            showFirstForm: false,
-            showSecondForm: true,
+            showFirstForm: true,
+            showSecondForm: false,
             termsChecked: false,
             phoneNumber: "",
         };

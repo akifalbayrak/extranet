@@ -7,7 +7,7 @@
             class="cursor-pointer"
             onclick="window.location.href='/'" />
         <div class="flex items-center space-x-8">
-            <LanguageSelector @click="logAkif" />
+            <LanguageSelector />
             <p class="text-white">{{ $t("alreadyPartner") }}</p>
             <router-link
                 to="/login"
@@ -156,12 +156,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import RegisterCard from "./RegisterCard.vue";
 import LanguageSelector from "./LanguageSelector.vue";
 import { useI18n } from "vue-i18n";
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 let texts = ref([
     t("sliderText1"),
@@ -172,22 +172,26 @@ let texts = ref([
     t("sliderText6"),
 ]);
 
-const logAkif = () => {
-    texts = ref([
+const currentTextIndex = ref(0);
+const showText = ref(true);
+const animationClass = ref("enter-right");
+
+let intervalId = null;
+
+const updateTexts = () => {
+    texts.value = [
         t("sliderText1"),
         t("sliderText2"),
         t("sliderText3"),
         t("sliderText4"),
         t("sliderText5"),
         t("sliderText6"),
-    ]);
+    ];
 };
 
-const currentTextIndex = ref(0);
-const showText = ref(true);
-const animationClass = ref("enter-right");
-
-let intervalId = null;
+watch(locale, (newLocale, oldLocale) => {
+    updateTexts();
+});
 
 onMounted(() => {
     document.title = "Kayıt";

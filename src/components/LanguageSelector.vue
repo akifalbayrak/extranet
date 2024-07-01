@@ -40,15 +40,11 @@ const isDropdownOpen = ref(false);
 
 function setLanguage(lang) {
     locale.value = lang;
-    console.log("Language changed to", lang);
-    console.log("Language changed1 to", locale);
-    console.log("Language changed1 to", locale.value);
-
-    isDropdownOpen.value = false; // Close the dropdown after selecting a language
+    isDropdownOpen.value = false;
 }
 
 const flagUrl = computed(() => {
-    const safeLocale = locale.value ? locale.value.toUpperCase() : "EN"; // Default to 'EN' if undefined
+    const safeLocale = locale.value ? locale.value.toUpperCase() : "EN";
     if (safeLocale === "EN") {
         return "https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg";
     } else if (safeLocale === "TR") {
@@ -60,14 +56,7 @@ function toggleDropdown() {
     isDropdownOpen.value = !isDropdownOpen.value;
 }
 
-// Compute the current language label dynamically based on the selected locale
 const currentLanguageLabel = computed(() => {
     return locale.value === "en" ? "English" : "Turkish";
 });
 </script>
-
-<style scoped>
-.absolute {
-    position: absolute;
-}
-</style>
