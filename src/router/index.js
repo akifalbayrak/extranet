@@ -3,6 +3,7 @@ import Auth from "../components/Auth.vue";
 import ForgotPassword from "../components/ForgotPassword.vue";
 import Register from "../components/Register.vue";
 import RegisterForm from "../components/RegisterForm.vue";
+import MainPage from "../components/MainPage.vue";
 
 const routes = [
     {
@@ -28,6 +29,11 @@ const routes = [
         path: "/register-form",
         name: "register-form",
         component: RegisterForm,
+    },
+    {
+        path: "/main-page",
+        name: "main-page",
+        component: MainPage,
     },
 ];
 
