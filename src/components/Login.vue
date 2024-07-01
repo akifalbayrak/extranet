@@ -155,20 +155,26 @@ export default {
     methods: {
         async validateUser() {
             try {
-                const response = await fetch("http://localhost:3000/user");
+                const response = await fetch(
+                    "http://localhost:3000/user/validate",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            email: this.email,
+                            password: this.password,
+                        }),
+                    }
+                );
                 if (!response.ok) {
                     throw new Error("Failed to fetch users");
                 }
                 const data = await response.json();
-
-                data.map((user) => {
-                    if (
-                        user.email === this.email &&
-                        user.password === this.password
-                    ) {
-                        this.$router.push("/main-page");
-                    }
-                });
+                if (data) {
+                    this.$router.push("/main-page");
+                }
             } catch (error) {
                 console.error("Error fetching users:", error);
             }
@@ -176,11 +182,11 @@ export default {
 
         openModal(type) {
             this.isModalVisible = true;
-            this.modalType = type; // Set modal type based on button click
+            this.modalType = type;
         },
         closeModal() {
             this.isModalVisible = false;
-            this.modalType = ""; // Reset modal type when closing
+            this.modalType = "";
         },
     },
 };
