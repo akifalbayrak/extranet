@@ -25,16 +25,7 @@
                 src="https://extranet.vihobook.com/static/media/vBlueLogo.703be7df.png"
                 alt="Logo"
                 style="max-width: 200px; height: auto" />
-            <form class="w-3/5">
-                <div class="mb-4">
-                    <input
-                        class="w-full p-4 border border-gray-300 rounded-md"
-                        type="text"
-                        id="text"
-                        name="text"
-                        placeholder="Üyelik kodu"
-                        required />
-                </div>
+            <form class="w-3/5" @submit.prevent="validateUser">
                 <div class="mb-4">
                     <input
                         class="w-full p-4 border border-gray-300 rounded-md"
@@ -42,14 +33,16 @@
                         id="email"
                         name="email"
                         placeholder="E-posta"
-                        required />
+                        required
+                        v-model="email" />
                 </div>
                 <div class="mb-4">
                     <div class="relative">
                         <input
                             :type="showPassword ? 'text' : 'password'"
                             placeholder="Şifre"
-                            class="w-full p-4 border border-gray-300 rounded-md" />
+                            class="w-full p-4 border border-gray-300 rounded-md"
+                            v-model="password" />
                         <button
                             @click="showPassword = !showPassword"
                             class="absolute inset-y-0 right-0 flex items-center justify-center px-3 text-gray-500"
@@ -153,12 +146,34 @@ export default {
     data() {
         return {
             showPassword: false,
+            email: "",
             password: "",
             isModalVisible: false,
             modalType: "", // Track which modal type to open
         };
     },
     methods: {
+        async validateUser() {
+            try {
+                const response = await fetch("http://localhost:3000/user");
+                if (!response.ok) {
+                    throw new Error("Failed to fetch users");
+                }
+                const data = await response.json();
+
+                data.map((user) => {
+                    if (
+                        user.email === this.email &&
+                        user.password === this.password
+                    ) {
+                        this.$router.push("/main-page");
+                    }
+                });
+            } catch (error) {
+                console.error("Error fetching users:", error);
+            }
+        },
+
         openModal(type) {
             this.isModalVisible = true;
             this.modalType = type; // Set modal type based on button click

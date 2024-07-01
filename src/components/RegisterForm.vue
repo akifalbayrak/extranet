@@ -96,6 +96,18 @@
                     Kayıt Ol
                 </button>
             </form>
+            <div
+                class="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4 py-2">
+                <h1 class="text-4xl font-bold text-gray-800">
+                    Vihobook Extranet
+                </h1>
+                <ul>
+                    <li v-for="user in users" :key="user.email">
+                        <p>{{ JSON.stringify(user) }}</p>
+                        <hr />
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <!-- Login div -->
@@ -128,6 +140,7 @@ export default {
     mounted() {
         document.title = "Kayıt Ol";
         this.fetchCountries();
+        this.fetchUsers();
     },
     data() {
         return {
@@ -141,19 +154,50 @@ export default {
             lastName: "",
             email: "",
             password: "",
+            users: [],
         };
     },
     methods: {
-        handleSubmit(event) {
+        async fetchUsers() {
+            try {
+                const response = await fetch("http://localhost:3000/user");
+                if (!response.ok) {
+                    throw new Error("Failed to fetch users");
+                }
+                const data = await response.json();
+                this.users = data;
+            } catch (error) {
+                console.error("Error fetching users:", error);
+            }
+        },
+
+        async handleSubmit(event) {
             event.preventDefault();
-            console.log("Country", this.selectedCountry);
-            console.log("Phone", this.phoneNumber);
-            console.log("Company", this.company);
-            console.log("First Name", this.firstName);
-            console.log("Last Name", this.lastName);
-            console.log("Email", this.email);
-            console.log("Password", this.password);
+            try {
+                const response = await fetch("http://localhost:3000/user", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: this.email,
+                        password: this.password,
+                        country: this.selectedCountry,
+                        phoneNumber: this.phoneNumber,
+                        company: this.company,
+                        firstName: this.firstName,
+                        lastName: this.lastName,
+                    }),
+                });
+                if (!response.ok) {
+                    throw new Error("Failed to create user");
+                }
+                this.fetchUsers();
+            } catch (error) {
+                console.error("Error creating user:", error);
+            }
             this.resetForm();
+            this.$router.push("/login");
         },
         resetForm() {
             // Resetting form fields to their initial state
