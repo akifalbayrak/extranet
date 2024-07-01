@@ -1,15 +1,14 @@
 <template>
     <div class="flex min-h-screen">
-        <!-- Register div -->
         <div
-            v-if="showFirstForm"
             class="flex flex-col items-center justify-center bg-gray-50 w-3/5 p-8">
             <img
                 class="mb-6"
                 src="https://extranet.vihobook.com/static/media/vBlueLogo.703be7df.png"
                 alt="Logo"
                 style="max-width: 200px; height: auto" />
-            <form class="w-3/5" @submit.prevent="handleFirstFormSubmit">
+
+            <form @submit.prevent="handleSubmit">
                 <div class="mb-4">
                     <p class="text-gray-600 my-2 text-sm text">
                         Firma Tesis Adı
@@ -20,126 +19,20 @@
                         id="text"
                         name="text"
                         placeholder="Örneğin. Google"
-                        required />
+                        required
+                        v-model="company" />
                 </div>
-                <hr class="my-3 border border-gray-300" />
-                <div class="mb-4">
-                    <p class="text-gray-600 my-2 text-sm text">
-                        Firma Tesis tipine göre seçim yaparak ücretsiz üye olun!
-                    </p>
-                </div>
-                <div>
-                    <div
-                        class="bg-white border border-black my-4 p-4 text-sm rounded-md flex">
-                        <input
-                            type="radio"
-                            id="konaklama"
-                            value="konaklama"
-                            v-model="picked"
-                            class="mr-3 accent-slate-600"
-                            checked />
-                        <div class="my-auto">
-                            <h3 class="text-base font-semibold">
-                                Konaklama Tesisleri
-                            </h3>
-                            <label
-                                for="konaklama"
-                                class="inline-block cursor-pointer text-xs"
-                                >Otel, Tatil Köyü & Resort, Küçük Oteller, Butik
-                                Oteller, Apart Otel, Bungalov</label
-                            >
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white border border-black my-4 p-4 text-sm rounded-md flex">
-                        <input
-                            type="radio"
-                            id="ozel"
-                            value="ozel"
-                            v-model="picked"
-                            class="mr-3 accent-slate-600" />
-                        <div class="my-auto">
-                            <h3 class="text-base font-semibold">
-                                Özel ve Uzun Süreli Konaklama Tesisleri
-                            </h3>
-                            <label
-                                for="ozel"
-                                class="inline-block cursor-pointer text-xs"
-                                >Villa, Delux Villa, Dağ Evleri, Residence,
-                                Penthouse, Ev, Daire, Misafir Evi</label
-                            >
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white border border-black my-4 p-4 text-sm rounded-md flex">
-                        <input
-                            type="radio"
-                            id="ulasim"
-                            value="ulasim"
-                            v-model="picked"
-                            class="mr-3 accent-slate-600" />
-                        <div class="my-auto">
-                            <h3 class="text-base font-semibold">
-                                Ulaşım Transfer Firmaları
-                            </h3>
-                            <label
-                                for="ulasim"
-                                class="inline-block cursor-pointer text-xs"
-                                >Transfer, Taksi Transfer</label
-                            >
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white border border-black my-4 p-4 text-sm rounded-md flex">
-                        <input
-                            type="radio"
-                            id="etkinlik"
-                            value="etkinlik"
-                            v-model="picked"
-                            class="mr-3 accent-slate-600" />
-                        <div class="my-auto">
-                            <h3 class="text-base font-semibold">
-                                Etkinlik Firmaları
-                            </h3>
-                            <label
-                                for="etkinlik"
-                                class="inline-block cursor-pointer text-xs"
-                                >Turlar, Eğlence ve Etkinlik Biletleri, Müzeler,
-                                Sanat ve Kültür</label
-                            >
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex items-center justify-between">
-                    <button
-                        type="submit"
-                        class="w-full text-white bg-slate-600 border border-black py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                        Sonraki
-                    </button>
-                </div>
-            </form>
-        </div>
-
-        <!-- Second Form -->
-        <div
-            v-if="showSecondForm"
-            class="flex flex-col items-center justify-center bg-gray-50 w-3/5 p-8">
-            <img
-                class="mb-6"
-                src="https://extranet.vihobook.com/static/media/vBlueLogo.703be7df.png"
-                alt="Logo"
-                style="max-width: 200px; height: auto" />
-            <form @submit.prevent="handleSecondFormSubmit">
                 <div class="grid grid-cols-2">
                     <input
                         type="text"
                         placeholder="Adı"
-                        class="w-full p-4 my-2 border border-gray-300 rounded-md" />
+                        class="w-full p-4 my-2 border border-gray-300 rounded-md"
+                        v-model="firstName" />
                     <input
                         type="text"
                         placeholder="Soyadı"
-                        class="w-full p-4 my-2 border border-gray-300 rounded-md" />
+                        class="w-full p-4 my-2 border border-gray-300 rounded-md"
+                        v-model="lastName" />
 
                     <vue-tel-input
                         class="w-full my-2 border border-gray-300 rounded-md"
@@ -167,11 +60,13 @@
                     <input
                         type="email"
                         placeholder="Email Adresi"
-                        class="w-full p-4 my-2 border border-gray-300 rounded-md" />
+                        class="w-full p-4 my-2 border border-gray-300 rounded-md"
+                        v-model="email" />
                     <input
                         type="password"
                         placeholder="Şifre"
-                        class="w-full p-4 my-2 border border-gray-300 rounded-md" />
+                        class="w-full p-4 my-2 border border-gray-300 rounded-md"
+                        v-model="password" />
                 </div>
                 <div
                     class="flex items-center justify-between p-4 bg-gray-100 rounded-md">
@@ -239,13 +134,38 @@ export default {
             picked: null,
             countries: [],
             selectedCountry: null,
-            showFirstForm: true,
-            showSecondForm: false,
             termsChecked: false,
             phoneNumber: "",
+            company: "",
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
         };
     },
     methods: {
+        handleSubmit(event) {
+            event.preventDefault();
+            console.log("Country", this.selectedCountry);
+            console.log("Phone", this.phoneNumber);
+            console.log("Company", this.company);
+            console.log("First Name", this.firstName);
+            console.log("Last Name", this.lastName);
+            console.log("Email", this.email);
+            console.log("Password", this.password);
+            this.resetForm();
+        },
+        resetForm() {
+            // Resetting form fields to their initial state
+            this.selectedCountry = null;
+            this.phoneNumber = "";
+            this.company = "";
+            this.firstName = "";
+            this.lastName = "";
+            this.email = "";
+            this.password = "";
+            this.termsChecked = false;
+        },
         handlePhoneNumberInput() {
             // Optional: Handle the phone number input as needed
             console.log("Phone number input:", this.phoneNumber);
@@ -265,14 +185,7 @@ export default {
                 console.error("Error fetching countries:", error);
             }
         },
-        handleFirstFormSubmit() {
-            this.showFirstForm = false;
-            this.showSecondForm = true;
-        },
-        handleSecondFormSubmit() {
-            console.log("Second form submitted");
-            console.log("Phone", this.phoneNumber);
-        },
+
         validateCountry() {
             const isValid = this.countries.some(
                 (country) => country.name_en === this.selectedCountry
